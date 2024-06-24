@@ -1,0 +1,3 @@
+0000: available
+0001: booked, <Customer name>, <date_in>, <date_out>
+0002: occupied, <Customer name>, <date_in>, <date_out>, <baalance>

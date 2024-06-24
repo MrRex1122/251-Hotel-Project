@@ -34,21 +34,21 @@ public:
 
 class Room {
 private:
-    static int number;
+    int number; //убрал static. 
     bool available;
     Customer customer;
 public:
-    Room() { number++; }
+
+    // Room() { number++; }
+    // Удалено static int number; и добавлен параметр для номера комнаты
+    // Из за стратического number и инкримента при создании класса room++ у всех номеров был один номер
+    Room(int num) : number(num), available(true) {}
 
     int getNumber() const { return number; }
     void setAvailability(bool available) { this->available = available; }
     bool isAvailable() const { return available; }
-
-
-
     void assignCustomer(const Customer& customer) { this->customer = customer; available = false; }
     void releaseRoom() { available = true; customer = Customer(); }
-
     Customer getCustomer() const { return customer; }
 };
 
@@ -260,7 +260,7 @@ public:
         cout << "Enter room number: ";
         cin >> roomNumber;
 
-        Room room;
+        Room room(roomNumber); //Класс создавался, а номер при создании не присваивался
         room.assignCustomer(Customer(name, balance, checkInDate, checkOutDate));
         reception.checkInCustomer(room, name, balance, checkInDate, checkOutDate);
     }
@@ -270,7 +270,7 @@ public:
         cout << "Enter room number: ";
         cin >> roomNumber;
 
-        Room room;
+        Room room(roomNumber); // Та же ошибка
         reception.checkOutCustomer(room);
     }
 
